@@ -1,12 +1,11 @@
 import pygame
 import math
-import numpy as np
 
 class Planet:
     AU = 149.6e6 * 1000 # m
     G = 6.67428e-11 # N*m² / kg²
     #scale = 250 / AU # 1AU = 100 pixels
-    scale = 80 / AU
+    scale = 15 / AU
     timestep = 3600 * 24 # 1 day
 
     def __init__(self, x, y, radius, color, mass, size):
@@ -25,7 +24,7 @@ class Planet:
         self.y_vel = 0
 
     def draw(self, win):
-        x = self.x * self.scale + self.size[0] / 2 # rescale onto pixels
+        x = self.x * self.scale + self.size[0] / 2 # rescale to pixels
         y = self.y * self.scale + self.size[1] / 2
         white = (225, 225, 225)
         FONT = pygame.font.SysFont("comicsans", 16)
@@ -50,7 +49,7 @@ class Planet:
         
         if not self.sun and self != other:
             for point in range(len(self.orbit)) :
-                if point%10 == 0 :
+                if point%30 == 0 :
                     t = 1000
                     relative_dis = []
                     Rela = []

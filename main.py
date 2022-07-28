@@ -1,5 +1,4 @@
 import pygame
-from sympy import julia_code
 from planets import Planet
 
 pygame.init()
@@ -34,39 +33,38 @@ def main():
     run = True
     clock = pygame.time.Clock()
 
-    sun = Planet(0, 0, 30, yellow, M_sun, size)
+    sun = Planet(0, 0, 3, yellow, M_sun, size)
     sun.sun = True
 
-    # mercury = Planet(0.387 * Planet.AU, 0 , 8, dark_grey, M_mercury, size)
-    # mercury.y_vel = -47.4 * 1000 # m / s
+    mercury = Planet(0.387 * Planet.AU, 0 , 8, dark_grey, M_mercury, size)
+    mercury.y_vel = -47.4 * 1000 # m / s
 
-    #venus = Planet(0.723 * Planet.AU, 0 , 14, brown_yellow, M_venus, size)
-    #venus.y_vel = -35.02 * 1000
+    venus = Planet(0.723 * Planet.AU, 0 , 14, brown_yellow, M_venus, size)
+    venus.y_vel = -35.02 * 1000
 
     earth = Planet(1 * Planet.AU, 0 , 16, blue, M_earth, size)
     earth.y_vel = -29.783 * 1000
     
-    #mars = Planet(1.524 * Planet.AU, 0 , 12, red, M_mars, size)
-    #mars.y_vel = -24.077 * 1000
+    mars = Planet(1.524 * Planet.AU, 0 , 12, red, M_mars, size)
+    mars.y_vel = -24.077 * 1000
 
     jupiter = Planet(5.2038 * Planet.AU, 0, 20, orange, M_jupiter, size)
     jupiter.y_vel = -13.07 * 1000
 
-    # saturn = Planet(9.5826 * Planet.AU, 0, 19, lulo, M_jupiter, size)
-    # saturn.y_vel = -9.68 * 1000
+    saturn = Planet(9.5826 * Planet.AU, 0, 19, lulo, M_jupiter, size)
+    saturn.y_vel = -9.68 * 1000
 
-    # uranus = Planet( -19.191 * Planet.AU, 0, 19, purple, M_uranus, size)
-    # uranus.y_vel = 6.80 * 1000
+    uranus = Planet(19.191 * Planet.AU, 0, 19, purple, M_uranus, size)
+    uranus.y_vel = -6.80 * 1000
 
-    # neptune = Planet( -30.07 * Planet.AU, 0, 19, blue2, M_neptune, size )
-    # neptune.y_vel = 5.43 ** 1000
+    neptune = Planet(30.07 * Planet.AU, 0, 19, blue2, M_neptune, size )
+    neptune.y_vel = -5.43 * 1000
 
 
     # planets = [sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune]
-    planets = [sun, earth, jupiter]
+    planets = [sun, earth, neptune]
 
     while run:
-        t = 100000000
         clock.tick(1000)
         WIN.fill((0, 0, 0))
 
@@ -78,8 +76,7 @@ def main():
             planet.update_position(planets)
             planet.draw(WIN)
 
-        #earth.draw_flower(mars, WIN)
-        jupiter.draw_flower(earth, WIN, orange)
+        neptune.draw_flower(earth, WIN, blue2)
 
         pygame.display.update()
 
