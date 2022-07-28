@@ -1,5 +1,5 @@
 # Planets_Orbit
-> The code in this repository reproduces the orbits of the solar system planets, also using the Earth's orbit and any other it performs some interesting pictures, where appears unusual form, as the following shows:
+> The code in this repository reproduces the orbits of the solar system planets, also using the Earth's orbit and any other it performs some interesting pictures, where appears unusual forms, as the following shows:
 >
 > ## Mercury and Venus
 > <img src="screenshots/mercury.png" width="380"> <img src="screenshots/venus.png" width="380">
