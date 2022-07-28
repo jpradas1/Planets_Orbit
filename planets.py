@@ -1,11 +1,12 @@
 import pygame
 import math
+import numpy as np
 
 class Planet:
     AU = 149.6e6 * 1000 # m
     G = 6.67428e-11 # N*m² / kg²
-    scale = 250 / AU # 1AU = 100 pixels
-    # scale = 20 / AU
+    #scale = 250 / AU # 1AU = 100 pixels
+    scale = 80 / AU
     timestep = 3600 * 24 # 1 day
 
     def __init__(self, x, y, radius, color, mass, size):
@@ -44,7 +45,27 @@ class Planet:
         if not self.sun:
             distance_text = FONT.render(f"{round(self.distance_to_sun/1000, 1)}km", 1, white)
             win.blit(distance_text, (x - distance_text.get_width()/2, y - distance_text.get_height()/2))
+    
+    def draw_flower(self, other, win, iro):
+        
+        if not self.sun and self != other:
+            for point in range(len(self.orbit)) :
+                if point%10 == 0 :
+                    t = 1000
+                    relative_dis = []
+                    Rela = []
+                    relative_dis.append(other.orbit[point])
+                    relative_dis.append(self.orbit[point])
+                    for position in relative_dis:
+                        x, y = position
+                        x = x * self.scale + self.size[0] / 2
+                        y = y * self.scale + self.size[1] / 2
+                        Rela.append((x,y))
 
+                    pygame.draw.lines(win, iro, False, Rela, 1)
+                    #pygame.image.save(win,"screenshots/"+str(t)+".jpg")
+                    #t += 1 
+        
     def attraction(self, other):
         other_x, other_y = other.x , other.y
         distance_x = other_x - self.x

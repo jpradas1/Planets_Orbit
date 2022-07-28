@@ -1,9 +1,10 @@
 import pygame
+from sympy import julia_code
 from planets import Planet
 
 pygame.init()
 
-width, height = 1000 , 1000
+width, height = 1000 , 900
 size = [width, height]
 WIN = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Planet Simulation")
@@ -33,23 +34,23 @@ def main():
     run = True
     clock = pygame.time.Clock()
 
-    sun = Planet(0, 0, 3, yellow, M_sun, size)
+    sun = Planet(0, 0, 30, yellow, M_sun, size)
     sun.sun = True
 
     # mercury = Planet(0.387 * Planet.AU, 0 , 8, dark_grey, M_mercury, size)
     # mercury.y_vel = -47.4 * 1000 # m / s
 
-    venus = Planet(0.723 * Planet.AU, 0 , 14, brown_yellow, M_venus, size)
-    venus.y_vel = -35.02 * 1000
+    #venus = Planet(0.723 * Planet.AU, 0 , 14, brown_yellow, M_venus, size)
+    #venus.y_vel = -35.02 * 1000
 
-    earth = Planet(-1 * Planet.AU, 0 , 16, blue, M_earth, size)
-    earth.y_vel = 29.783 * 1000
-    #
-    # mars = Planet(-1.524 * Planet.AU, 0 , 12, red, M_mars, size)
-    # mars.y_vel = 24.077 * 1000
+    earth = Planet(1 * Planet.AU, 0 , 16, blue, M_earth, size)
+    earth.y_vel = -29.783 * 1000
+    
+    #mars = Planet(1.524 * Planet.AU, 0 , 12, red, M_mars, size)
+    #mars.y_vel = -24.077 * 1000
 
-    # jupiter = Planet(5.2038 * Planet.AU, 0, 20, orange, M_jupiter, size)
-    # jupiter.y_vel = -13.07 * 1000
+    jupiter = Planet(5.2038 * Planet.AU, 0, 20, orange, M_jupiter, size)
+    jupiter.y_vel = -13.07 * 1000
 
     # saturn = Planet(9.5826 * Planet.AU, 0, 19, lulo, M_jupiter, size)
     # saturn.y_vel = -9.68 * 1000
@@ -62,10 +63,11 @@ def main():
 
 
     # planets = [sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune]
-    planets = [sun, venus, earth]
+    planets = [sun, earth, jupiter]
 
     while run:
-        clock.tick(60)
+        t = 100000000
+        clock.tick(1000)
         WIN.fill((0, 0, 0))
 
         for event in pygame.event.get():
@@ -75,6 +77,9 @@ def main():
         for planet in planets:
             planet.update_position(planets)
             planet.draw(WIN)
+
+        #earth.draw_flower(mars, WIN)
+        jupiter.draw_flower(earth, WIN, orange)
 
         pygame.display.update()
 
